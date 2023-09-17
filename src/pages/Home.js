@@ -5,7 +5,9 @@ import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
-import { services } from "../utils/Data";
+// import { services } from "../utils/Data";
+
+// useState , useEffect, axios , fetch ,  {auth-> localstorage cookies}
 
 const Home = () => {
   return (
@@ -89,7 +91,7 @@ const Home = () => {
           </div>
         </div>
       </Container>
-      <Container class1="home-wrapper-2 py-5">
+      {/* <Container class1="home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
             <div className="servies d-flex align-items-center justify-content-between">
@@ -107,7 +109,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </Container>
+      </Container> */}
       <Container class1="home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
