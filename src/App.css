@@ -1,3 +1,5 @@
+main-product-image
+
 * {
   margin: 0;
   padding: 0;
@@ -279,7 +281,7 @@ footer .input-group-text {
   width: 100%;
 }
 .product-card .product-image {
-  height: 270px;
+  max-height: 380px;
 }
 .product-card .product-image img {
   object-fit: contain;

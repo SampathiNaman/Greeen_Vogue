@@ -4,6 +4,7 @@ import Meta from "../components/Meta";
 import { Link } from "react-router-dom";
 import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
+
 const Signup = () => {
   return (
     <>
@@ -27,6 +28,11 @@ const Signup = () => {
                   name="password"
                   placeholder="Password"
                 />
+                <select name='role' id='role' className='form-control'>
+                  <option value=''>Select Role</option>
+                  <option value='buyer'>Buyer</option>
+                  <option value='seller'>Seller</option> 
+                </select>      
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
                     <button className="button border-0">Sign Up</button>

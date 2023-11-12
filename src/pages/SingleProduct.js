@@ -10,15 +10,18 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import watch from "../images/watch.jpg";
 import Container from "../components/Container";
-const SingleProduct = () => {
-  const props = {
+const SingleProduct = (props) => {
+  const {product, handleAddCart, handleAddWishlist, handleAddCompare} = props
+  const {id, img1, img2, title, description, rating, cost, type, category} = product
+  const [selectedImg, setSelectedImg] = useState(img1);  
+  const zoom = {
     width: 594,
     height: 600,
     zoomWidth: 600,
-
-    img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg",
+    img: selectedImg,
   };
 
+  const [quantity, setQuantity] = useState(1);
   const [orderedProduct, setorderedProduct] = useState(true);
   const copyToClipboard = (text) => {
     console.log("text", text);
@@ -37,20 +40,29 @@ const SingleProduct = () => {
       <Container class1="main-product-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-6">
-            <div className="main-product-image">
-              <div>
-                <ReactImageZoom {...props} />
+            <div>
+              <div className="main-product-image">
+                <ReactImageZoom {...zoom} />
               </div>
             </div>
             <div className="other-product-images d-flex flex-wrap gap-15">
               <div>
                 <img
-                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
+                  src={img1}
+                  onClick={() => setSelectedImg(img1)}
                   className="img-fluid"
                   alt=""
                 />
               </div>
               <div>
+                <img
+                  src={img2}
+                  onClick={() => setSelectedImg(img2)}
+                  className="img-fluid"
+                  alt=""
+                />
+              </div>
+              {/* <div>
                 <img
                   src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
                   className="img-fluid"
@@ -63,61 +75,39 @@ const SingleProduct = () => {
                   className="img-fluid"
                   alt=""
                 />
-              </div>
-              <div>
-                <img
-                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="col-6">
             <div className="main-product-details">
               <div className="border-bottom">
                 <h3 className="title">
-                  Kids Headphones Bulk 10 Pack Multi Colored For Students
+                {title}
                 </h3>
               </div>
-              <div className="border-bottom py-3">
-                <p className="price">$ 100</p>
-                <div className="d-flex align-items-center gap-10">
-                  <ReactStars
-                    count={5}
-                    size={24}
-                    value={4}
-                    edit={false}
-                    activeColor="#ffd700"
-                  />
-                  <p className="mb-0 t-review">( 2 Reviews )</p>
-                </div>
-                <a className="review-btn" href="#review">
-                  Write a Review
-                </a>
-              </div>
+
               <div className=" py-3">
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Type :</h3>
-                  <p className="product-data">Watch</p>
+                  <p className="product-data">{type}</p>
                 </div>
-                <div className="d-flex gap-10 align-items-center my-2">
+                {/* <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Brand :</h3>
                   <p className="product-data">Havells</p>
-                </div>
+                </div> */}
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Category :</h3>
-                  <p className="product-data">Watch</p>
+                  <p className="product-data">{category}</p>
                 </div>
-                <div className="d-flex gap-10 align-items-center my-2">
+                {/* <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Tags :</h3>
-                  <p className="product-data">Watch</p>
-                </div>
+                  <p className="product-data">Foot Wear</p>
+                </div> */}
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Availablity :</h3>
                   <p className="product-data">In Stock</p>
                 </div>
-                <div className="d-flex gap-10 flex-column mt-2 mb-3">
+                {/* <div className="d-flex gap-10 flex-column mt-2 mb-3">
                   <h3 className="product-heading">Size :</h3>
                   <div className="d-flex flex-wrap gap-15">
                     <span className="badge border border-1 bg-white text-dark border-secondary">
@@ -137,42 +127,64 @@ const SingleProduct = () => {
                 <div className="d-flex gap-10 flex-column mt-2 mb-3">
                   <h3 className="product-heading">Color :</h3>
                   <Color />
+                </div> */}
+
+              <div className="border-bottom py-3">
+                <p className="price">₨ {cost*quantity}</p>
+                <div className="d-flex align-items-center gap-10">
+                  <ReactStars
+                    count={5}
+                    size={24}
+                    value={4}
+                    edit={false}
+                    activeColor="#ffd700"
+                  />
+                  <p className="mb-0 t-review">( 2 Reviews )</p>
                 </div>
+                <a className="review-btn" href="#review">
+                  Write a Review
+                </a>
+              </div>
+
                 <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
-                  <h3 className="product-heading">Quantity :</h3>
+                  {/* <h3 className="product-heading">Quantity :</h3>
                   <div className="">
                     <input
                       type="number"
                       name=""
                       min={1}
                       max={10}
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
                       className="form-control"
                       style={{ width: "70px" }}
                       id=""
                     />
-                  </div>
-                  <div className="d-flex align-items-center gap-30 ms-5">
+                  </div> */}
+
+                  <div className="d-flex align-items-center gap-30 mt-3">
                     <button
                       className="button border-0"
                       data-bs-toggle="modal"
                       data-bs-target="#staticBackdrop"
                       type="button"
+                      onClick={() => handleAddCart(product)}
                     >
                       Add to Cart
                     </button>
-                    <button className="button signup">Buy It Now</button>
+                    {/* <button className="button signup">Buy It Now</button> */}
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-15">
-                  <div>
-                    <a href="">
+                  <div onClick={() => handleAddCompare(product)}>
+                    <Link to='/compare-product'>
                       <TbGitCompare className="fs-5 me-2" /> Add to Compare
-                    </a>
+                    </Link>
                   </div>
-                  <div>
-                    <a href="">
+                  <div onClick={() => handleAddWishlist(product)}>
+                    <Link to='/wishlist'>
                       <AiOutlineHeart className="fs-5 me-2" /> Add to Wishlist
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="d-flex gap-10 flex-column  my-3">
@@ -207,10 +219,7 @@ const SingleProduct = () => {
             <h4>Description</h4>
             <div className="bg-white p-3">
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Tenetur nisi similique illum aut perferendis voluptas, quisquam
-                obcaecati qui nobis officia. Voluptatibus in harum deleniti
-                labore maxime officia esse eos? Repellat?
+                {description}
               </p>
             </div>
           </div>
@@ -250,7 +259,7 @@ const SingleProduct = () => {
                     <ReactStars
                       count={5}
                       size={24}
-                      value={4}
+                      value={rating}
                       edit={true}
                       activeColor="#ffd700"
                     />
@@ -273,7 +282,7 @@ const SingleProduct = () => {
               <div className="reviews mt-4">
                 <div className="review">
                   <div className="d-flex gap-10 align-items-center">
-                    <h6 className="mb-0">Navdeep</h6>
+                    <h6 className="mb-0">Tanishq</h6>
                     <ReactStars
                       count={5}
                       size={24}
@@ -311,7 +320,7 @@ const SingleProduct = () => {
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >

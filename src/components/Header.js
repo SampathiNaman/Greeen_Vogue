@@ -6,7 +6,8 @@ import wishlist from "../images/wishlist.svg";
 import user from "../images/user.svg";
 import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
-const Header = () => {
+const Header = (props) => {
+  const {cartItemsCount, totalCost} = props;
   return (
     <>
       <header className="header-top-strip py-3">
@@ -14,7 +15,7 @@ const Header = () => {
           <div className="row">
             <div className="col-6">
               <p className="text-white mb-0">
-                Free Shipping Over $100 & Free Returns
+                Free Shipping Over ₹9999 & Free Returns
               </p>
             </div>
             <div className="col-6">
@@ -33,7 +34,7 @@ const Header = () => {
           <div className="row align-items-center">
             <div className="col-2">
               <h2>
-                <Link className="text-white">Dev Corner</Link>
+                <Link className="text-white">Green Vogue</Link>
               </h2>
             </div>
             <div className="col-5">
@@ -92,8 +93,8 @@ const Header = () => {
                   >
                     <img src={cart} alt="cart" />
                     <div className="d-flex flex-column gap-10">
-                      <span className="badge bg-white text-dark">0</span>
-                      <p className="mb-0">$ 500</p>
+                      <span className="badge bg-white text-dark">{cartItemsCount}</span>
+                      <p className="mb-0">₨ {totalCost}</p>   
                     </div>
                   </Link>
                 </div>
@@ -126,18 +127,18 @@ const Header = () => {
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li>
-                        <Link className="dropdown-item text-white" to="">
-                          Action
+                        <Link className="dropdown-item text-white" to="">  {/*Add links*/}
+                          Men's clothing
                         </Link>
                       </li>
                       <li>
-                        <Link className="dropdown-item text-white" to="">
-                          Another action
+                        <Link className="dropdown-item text-white" to="">  {/*Add links*/}
+                          Women's clothing
                         </Link>
                       </li>
                       <li>
-                        <Link className="dropdown-item text-white" to="">
-                          Something else here
+                        <Link className="dropdown-item text-white" to="">  {/*Add links*/}
+                          kid's clothing
                         </Link>
                       </li>
                     </ul>
@@ -146,8 +147,8 @@ const Header = () => {
                 <div className="menu-links">
                   <div className="d-flex align-items-center gap-15">
                     <NavLink to="/">Home</NavLink>
-                    <NavLink to="/product">Our Store</NavLink>
-                    <NavLink to="/blogs">Blogs</NavLink>
+                    {/* <NavLink to="/product">Our Store</NavLink>
+                    <NavLink to="/blogs">Blogs</NavLink> */}
                     <NavLink to="/contact">Contact</NavLink>
                   </div>
                 </div>
