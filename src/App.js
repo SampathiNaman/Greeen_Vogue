@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
@@ -21,7 +21,20 @@ import TermAndContions from "./pages/TermAndContions";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+
+
 function App() {
+
+  const fetchProducts = async () => {
+    await fetch("localhost:5000/api/product")
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, [])
 
   const womensWear = [{id: 11, img1: "https://rukminim2.flixcart.com/image/832/832/xif0q/dress/j/9/a/xs-194-brown-aahwan-original-imagqh96rshyzmvg.jpeg?q=70", img2: "https://rukminim2.flixcart.com/image/832/832/xif0q/dress/x/g/z/xs-194-brown-aahwan-original-imagqh96srvhzk3y.jpeg?q=70", title: "Women A-line Brown Dress", description: "Short puff sleeve, brown color, ideal for women. Suitable for western wear", rating: 4, cost: 450.00},
   {id: 12, img1: "https://rukminim2.flixcart.com/image/832/832/xif0q/dress/c/z/4/l-reg-black-plet-l-maya-impex-original-imagmvezbztt9ygd.jpeg?q=70", img2: "https://rukminim2.flixcart.com/image/832/832/xif0q/dress/j/9/h/l-reg-black-plet-l-maya-impex-original-imagmvez4v55ahju.jpeg?q=70", title: "Women Fit and Flare Black, Black Dress", description: "The Dress Combines Ethnic With The Fashion Of Today And Makes You Stand Out.", rating: 4, cost: 500.00},

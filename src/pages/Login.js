@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
@@ -11,7 +11,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginHandler = (e) => {
+  const navigate = useNavigate();
+
+  const loginHandler = async (e) => {
     e.preventDefault();
 
     // fetch('http://localhost:5000/api/user/login', {
@@ -22,14 +24,17 @@ const Login = () => {
     //   })
     // })
 
-    axios
-      .post("http://localhost:5000/api/user/login", {
+    if (email === "" || password === "") {
+      return;
+    }
+
+    await axios.post("http://localhost:5000/api/user/login", {
         email: email,
         password: password,
       })
       .then((res) => {
         console.log(res);
-
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -50,18 +55,16 @@ const Login = () => {
                 <CustomInput
                   type="email"
                   name="email"
+                  value={email}
                   placeholder="Email"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
+                  onChange={setEmail}
                 />
                 <CustomInput
                   type="password"
                   name="password"
+                  value={password}
                   placeholder="Password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
+                  onChange={setPassword}
                 />
                 <div>
                   <Link to="/forgot-password">Forgot Password?</Link>
