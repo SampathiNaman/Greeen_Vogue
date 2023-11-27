@@ -1,21 +1,40 @@
 import React, {useState, useEffect} from "react";
+import axios from "axios";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import watch from "../images/watch.jpg";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Container from "../components/Container";
+import Cookies from "js-cookie";
 
 const Cart = (props) => {
-  const {cart, setCart, quantity, setQuantity, totalCost} = props
+  const {cart, setCart, quantity, setQuantity, totalCost, loggedIn} = props
 
+  const saveCart = async () => {
+    await fetch("http://localhost:5000/api/user/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${Cookies.get("refreshToken")}`
+      },
+      body: JSON.stringify({cart: cart, count: [...quantity], cartTotal: totalCost}),
+    })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+  }
   useEffect(() => {
-    localStorage.setItem("quantity", JSON.stringify(quantity))
-  }, [quantity])
+    return () => loggedIn && saveCart()
+  }, [])
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart))
-  })
+  // useEffect(() => {
+  //   localStorage.setItem("quantity", JSON.stringify(quantity))
+  // }, [quantity])
+
+  // useEffect(() => {
+  //   localStorage.setItem("cart", JSON.stringify(cart))
+  // })
 
 
   return (
@@ -36,7 +55,8 @@ const Cart = (props) => {
             </>}   
              
             {cart.map((item, i) =>{
-                const {id, img1, img2, title, description, rating, cost, type, category} = item;
+                const {images, title, price, category} = item;
+                const img1 = images[0];
             return (
             <div key={i} className="cart-data py-3 mb-2 d-flex justify-content-between align-items-center">
               <div className="cart-col-1 gap-15 d-flex align-items-center">
@@ -45,12 +65,11 @@ const Cart = (props) => {
                 </div>
                 <div className="w-75">
                   <p>{title}</p>
-                  <p>Type: {type}</p>
                   <p>Category: {category}</p>
                 </div>
               </div>
               <div className="cart-col-2">
-                <h5 className="price">₨ {cost}</h5>
+                <h5 className="price">₨ {price}</h5>
               </div>
               <div className="cart-col-3 d-flex align-items-center gap-15">
                 <div>
@@ -70,7 +89,7 @@ const Cart = (props) => {
                 </div>
               </div>
               <div className="cart-col-4">
-                <h5 className="price">₨ {cost*quantity[i]}</h5>
+                <h5 className="price">₨ {price*quantity[i]}</h5>
               </div>
             </div>
             )}
@@ -80,7 +99,7 @@ const Cart = (props) => {
 
           <div className="col-12 py-2 mt-4">
             <div className="d-flex justify-content-between align-items-baseline">
-              <Link to="/product" className="button">
+              <Link to="/" className="button">
                 Continue To Shopping
               </Link>
               <div className="d-flex flex-column align-items-end">

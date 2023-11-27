@@ -81,8 +81,8 @@ const Contact = () => {
                     </li>
                     <li className="mb-3 d-flex gap-15 align-items-center">
                       <AiOutlineMail className="fs-5" />
-                      <a href="mailto:navdeepdahiya753@gmail.com">
-                        navdeepdahiya753@gmail.com
+                      <a href="mailto:mymail@gmail.com">
+                        mymail@gmail.com
                       </a>
                     </li>
                     <li className="mb-3 d-flex gap-15 align-items-center">

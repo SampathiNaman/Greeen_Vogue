@@ -5,6 +5,7 @@ import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
+import { useEffect } from "react";
 // import { services } from "../utils/Data";
 
 // useState , useEffect, axios , fetch ,  {auth-> localstorage cookies}
@@ -182,7 +183,7 @@ const Home = (props) => {
       </Container> */}
       <Container class1="featured-wrapper py-5 home-wrapper-2">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12" id='womensWear'>
             <h3 className="section-heading">Ladies Collection</h3>
           </div>
           {/* <ProductCard />
@@ -190,7 +191,7 @@ const Home = (props) => {
           <ProductCard />
           <ProductCard /> */}
           <div className="row">
-          {womensWear.map(product => <ProductCard key={product.id} handleProductClick={handleProductClick} product={{...product, "type": "Clothing", "category": "Women's Wear"}} />)}
+          {womensWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={product} />)}
           </div>
         </div>
       </Container>
@@ -275,7 +276,7 @@ const Home = (props) => {
       </Container> */}
       <Container class1="popular-wrapper py-5 home-wrapper-2">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12" id='mensWear'>
             <h3 className="section-heading">Gens Collection</h3>
           </div>
         </div>
@@ -284,17 +285,17 @@ const Home = (props) => {
           <ProductCard />
           <ProductCard />
           <ProductCard /> */}
-          {mensWear.map(product => <ProductCard key={product.id} handleProductClick={handleProductClick} product={{...product, "type": "Clothing", "category": "Men's Wear"}} />)}
+          {mensWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={{...product, "type": "Clothing", "category": "Men's Wear"}} />)}
         </div>
       </Container>
       <Container class1="popular-wrapper py-5 home-wrapper-2">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12" id='footWear'>
             <h3 className="section-heading">Foot Wear</h3>
           </div>
         </div>
         <div className="row">
-          {footWear.map(product => <ProductCard key={product.id} handleProductClick={handleProductClick} product={{...product, "type": "Shoes", "category": "Foot Wear"}} />)}
+          {footWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={{...product, "type": "Shoes", "category": "Foot Wear"}} />)}
         </div>
       </Container>
       <Container class1="marque-wrapper home-wrapper-2 py-5">

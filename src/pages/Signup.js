@@ -6,6 +6,7 @@ import Meta from "../components/Meta";
 import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Signup = () => {
   const [name, setName] = useState('')
@@ -31,13 +32,12 @@ const Signup = () => {
       password: password,
       role: role
     })
-    .then((res) => {
-      console.log(res);
+    .then(() => {
       setError('')
+      Cookies.set("role", role)
       navigate('/')
     })
     .catch((err) => {
-      console.log(err);
       setError(err.response.data.message)
     });
 

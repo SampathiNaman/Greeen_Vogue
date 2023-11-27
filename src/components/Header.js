@@ -1,13 +1,54 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, Link} from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
+import Cookies from "js-cookie";
+import axios from "axios";
 import compare from "../images/compare.svg";
 import wishlist from "../images/wishlist.svg";
 import user from "../images/user.svg";
 import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
 const Header = (props) => {
-  const {cartItemsCount, totalCost} = props;
+  const { cartItemsCount, totalCost, loggedIn, setLoggedIn } = props;
+
+  // const logout = async () => {
+  //   await axios
+  //     .get("http://localhost:5000/api/user/logout", { withCredentials: true })
+  //     .then(() => {
+  //         console.log("Logged out");
+  //         Cookies.remove("token");
+  //         Cookies.remove("role");
+  //         setLoggedIn(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // };
+
+  // const logout = () => {
+  //   Cookies.remove("refreshToken");
+  //   Cookies.remove("role");
+  //   setLoggedIn(false);
+  // }
+
+  const logout = async () => {
+    await fetch("http://localhost:5000/api/user/logout", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${Cookies.get("refreshToken")}`
+      }
+    })
+      .then(() => {
+        Cookies.remove("refreshToken");
+        Cookies.remove("role");
+        setLoggedIn(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+    })
+  }
+
   return (
     <>
       <header className="header-top-strip py-3">
@@ -15,7 +56,7 @@ const Header = (props) => {
           <div className="row">
             <div className="col-6">
               <p className="text-white mb-0">
-                Free Shipping Over ₹9999 & Free Returns
+                Free Shipping Over ₹2999 & Free Returns
               </p>
             </div>
             <div className="col-6">
@@ -75,17 +116,29 @@ const Header = (props) => {
                     </p>
                   </Link>
                 </div>
-                <div>
-                  <Link
-                    to="/login"
+
+                {loggedIn ? (
+                  <div
+                    onClick={logout}
                     className="d-flex align-items-center gap-10 text-white"
                   >
                     <img src={user} alt="user" />
-                    <p className="mb-0">
-                      Log in <br /> My Account
-                    </p>
-                  </Link>
-                </div>
+                    <p className="mb-0">Log Out</p>
+                  </div>
+                ) : (
+                  <div>
+                    <Link
+                      to="/login"
+                      className="d-flex align-items-center gap-10 text-white"
+                    >
+                      <img src={user} alt="user" />
+                      <p className="mb-0">
+                        Log in <br /> My Account
+                      </p>
+                    </Link>
+                  </div>
+                )}
+
                 <div>
                   <Link
                     to="/cart"
@@ -93,8 +146,10 @@ const Header = (props) => {
                   >
                     <img src={cart} alt="cart" />
                     <div className="d-flex flex-column gap-10">
-                      <span className="badge bg-white text-dark">{cartItemsCount}</span>
-                      <p className="mb-0">₨ {totalCost}</p>   
+                      <span className="badge bg-white text-dark">
+                        {cartItemsCount}
+                      </span>
+                      <p className="mb-0">₨ {totalCost}</p>
                     </div>
                   </Link>
                 </div>
@@ -126,20 +181,20 @@ const Header = (props) => {
                       className="dropdown-menu"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                      <li>
-                        <Link className="dropdown-item text-white" to="">  {/*Add links*/}
-                          Men's clothing
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="dropdown-item text-white" to="">  {/*Add links*/}
+                      <li className="dropdown-item text-white">
+                          {" "}
+                          {/*Add links*/}
                           Women's clothing
-                        </Link>
+                      </li>                      
+                      <li className="dropdown-item text-white">
+                          {" "}
+                          {/*Add links*/}
+                          Men's clothing
                       </li>
-                      <li>
-                        <Link className="dropdown-item text-white" to="">  {/*Add links*/}
+                      <li className="dropdown-item text-white">
+                          {" "}
+                          {/*Add links*/}
                           kid's clothing
-                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -149,6 +204,7 @@ const Header = (props) => {
                     <NavLink to="/">Home</NavLink>
                     {/* <NavLink to="/product">Our Store</NavLink>
                     <NavLink to="/blogs">Blogs</NavLink> */}
+                    {Cookies.get('role')==='seller' && <NavLink to="/sell-product">Sell Product</NavLink>}
                     <NavLink to="/contact">Contact</NavLink>
                   </div>
                 </div>

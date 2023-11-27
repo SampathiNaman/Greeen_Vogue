@@ -20,12 +20,13 @@ const CompareProduct = (props) => {
       {compare.length==0 && <h1 className="text-center">Add Products to Compare</h1>}        
         <div className="row">
           {compare.map((product) => {
-            const {id, img1, img2, title, description, rating, cost, type, category} = product
+            const {_id, images, title, totalrating, price, category} = product
+            const img1 = images[0]
             return (
           <div className="col-3">
             <div className="compare-product-card position-relative">
               <img
-                onClick={() => setCompare(compare.filter((item) => item.id !== id))}
+                onClick={() => setCompare(compare.filter((item) => item._id !== _id))}
                 src="images/cross.svg"
                 alt="cross"
                 className="position-absolute cross img-fluid"
@@ -40,21 +41,21 @@ const CompareProduct = (props) => {
                 <ReactStars
               count={5}
               size={24}
-              value={rating}
+              value={parseInt(totalrating)}
               edit={false}
               activeColor="#ffd700"
             />
-                <h6 className="price mb-3 mt-3">₨ {cost}</h6>
+                <h6 className="price mb-3 mt-3">₨ {price}</h6>
 
                 <div>
                   {/* <div className="product-detail">
                     <h5>Brand:</h5>
                     <p>Havels</p>
-                  </div> */}
+                  </div>
                   <div className="product-detail">
                     <h5>Type:</h5>
                     <p>{type}</p>
-                  </div>
+                  </div> */}
                   <div className="product-detail">
                     <h5>Category:</h5>
                     <p>{category}</p>

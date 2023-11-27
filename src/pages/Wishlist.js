@@ -1,15 +1,32 @@
 import React, {useEffect} from "react";
+import Cookies from "js-cookie";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
 import ReactStars from "react-rating-stars-component";
 
 const Wishlist = (props) => {
-  const {wishlist, setWishlist} = props
+  const {wishlist, setWishlist, loggedIn} = props
 
+  // useEffect(() => {
+  //   localStorage.setItem("wishlist", JSON.stringify(wishlist))
+  // }, [wishlist])
+
+  const saveWishlist = async () => {
+    await fetch("http://localhost:5000/api/user/wishlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${Cookies.get("refreshToken")}`
+      },
+      body: JSON.stringify({wishlist: wishlist}),
+    })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+  }
   useEffect(() => {
-    localStorage.setItem("wishlist", JSON.stringify(wishlist))
-  }, [wishlist])
+    return () => loggedIn && saveWishlist()
+  }, [])
   
   return (
     <>
@@ -19,12 +36,13 @@ const Wishlist = (props) => {
       {wishlist.length==0 && <h1 className="text-center">Add Your Favourite Products</h1>}
         <div className="row">
           {wishlist.map((product) => {
-            const {id, img1, img2, title, description, rating, cost, type, category} = product
+            const {_id, images, title,  totalrating, price} = product
+            const img1 = images[0]
             return (
           <div className="col-3">
             <div className="wishlist-card position-relative">
               <img
-                onClick={() => setWishlist(wishlist.filter((item) => item.id !== id))}
+                onClick={() => setWishlist(wishlist.filter((item) => item._id !== _id))}
                 src="images/cross.svg"
                 alt="cross"
                 className="position-absolute cross img-fluid"
@@ -43,11 +61,11 @@ const Wishlist = (props) => {
                 <ReactStars
               count={5}
               size={24}
-              value={rating}
+              value={parseInt(totalrating)}
               edit={false}
               activeColor="#ffd700"
             />
-                <h6 className="price">₨ {cost}</h6>
+                <h6 className="price">₨ {price}</h6>
               </div>
             </div>
           </div>            

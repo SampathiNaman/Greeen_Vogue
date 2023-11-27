@@ -6,10 +6,13 @@ import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
-const Login = () => {
+const Login = (props) => {
+  const {setLoggedIn} = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
@@ -25,6 +28,7 @@ const Login = () => {
     // })
 
     if (email === "" || password === "") {
+      setError('Enter Credentials');
       return;
     }
 
@@ -33,11 +37,16 @@ const Login = () => {
         password: password,
       })
       .then((res) => {
-        console.log(res);
-        navigate("/");
+        if (res.status === 200) {
+          Cookies.set('refreshToken', res.data.token);
+          Cookies.set('role', res.data.role);  
+          setError('');
+          setLoggedIn(true);
+          navigate("/");
+        }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+          setError('Invalid Credentials');
       });
   };
 
@@ -81,6 +90,7 @@ const Login = () => {
                       SignUp
                     </Link>
                   </div>
+                  {error && <p className="text-danger text-center mt-3">{error}</p>}
                 </div>
               </form>
             </div>

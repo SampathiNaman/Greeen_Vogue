@@ -14,7 +14,9 @@ const ProductCard = (props) => {
   let location = useLocation();
   if (product === undefined) return (<></>)
 
-  const {id, img1, img2, title, description, rating, cost} = product
+  const {_id, images, title, description, totalrating, price} = product
+  const img1 = images[0]
+  const img2 = images[1]
   return (
     <>
       <div
@@ -24,13 +26,14 @@ const ProductCard = (props) => {
         } `}
       >
         <Link
-          to={`${
-            location.pathname == "/"
-              ? "/product/:id"
-              : location.pathname == "/product/:id"
-              ? `/product/:id`
-              : `id`
-          }`}
+          // to={`${
+          //   location.pathname == "/"
+          //     ? `/product/${_id}`
+          //     : location.pathname == "/product/:id"
+          //     ? `/product/:id`
+          //     : `id`
+          // }`}
+          to={`/product/${_id}`}
           className="product-card position-relative"
         >
           <div className="wishlist-icon position-absolute">
@@ -50,7 +53,7 @@ const ProductCard = (props) => {
             <ReactStars
               count={5}
               size={24}
-              value={rating}
+              value={parseInt(totalrating)}
               edit={false}
               activeColor="#ffd700"
             />
@@ -60,7 +63,7 @@ const ProductCard = (props) => {
               dolores et quas molestias excepturi sint occaecati cupiditate non
               provident, similique sunt...
             </p>
-            <p className="price">₨ {cost}</p>
+            <p className="price">₨ {price}</p>
           </div>
           <div className="action-bar position-absolute">
             <div className="d-flex flex-column gap-15">
@@ -119,7 +122,7 @@ const ProductCard = (props) => {
               dolores et quas molestias excepturi sint occaecati cupiditate non
               provident, similique sunt...
             </p>
-            <p className="price">${cost}</p>
+            <p className="price">${price}</p>
           </div>
           <div className="action-bar position-absolute">
             <div className="d-flex flex-column gap-15">
