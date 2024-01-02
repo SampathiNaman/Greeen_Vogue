@@ -16,23 +16,6 @@ const SingleProduct = (props) => {
 
   const navigate = useNavigate();
 
-// const [productDetails, setProductDetails] = useState({})
-//
-  // const {id} = useParams()
-  // const fetchProduct = async () => {
-  //   await fetch(`http://localhost:5000/api/product/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setProductDetails(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-  // useEffect(() => {
-  //   fetchProduct();
-  // })
 
   const {product, handleAddCart, handleAddWishlist, handleAddCompare} = props
   const {images, title, description, totalrating, price, brand, category} = product
@@ -88,20 +71,7 @@ const SingleProduct = (props) => {
                   alt=""
                 />
               </div>
-              {/* <div>
-                <img
-                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-              </div> */}
+
             </div>
           </div>
           <div className="col-6">
@@ -113,47 +83,16 @@ const SingleProduct = (props) => {
               </div>
 
               <div className=" py-3">
-                {/* <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Brand :</h3>
-                  <p className="product-data">{brand}</p>
-                </div>
-                <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Brand :</h3>
-                  <p className="product-data">Havells</p>
-                </div> */}
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Category :</h3>
                   <p className="product-data">{category}</p>
                 </div>
-                {/* <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Tags :</h3>
-                  <p className="product-data">Foot Wear</p>
-                </div> */}
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Availablity :</h3>
                   <p className="product-data">In Stock</p>
                 </div>
-                {/* <div className="d-flex gap-10 flex-column mt-2 mb-3">
-                  <h3 className="product-heading">Size :</h3>
-                  <div className="d-flex flex-wrap gap-15">
-                    <span className="badge border border-1 bg-white text-dark border-secondary">
-                      S
-                    </span>
-                    <span className="badge border border-1 bg-white text-dark border-secondary">
-                      M
-                    </span>
-                    <span className="badge border border-1 bg-white text-dark border-secondary">
-                      XL
-                    </span>
-                    <span className="badge border border-1 bg-white text-dark border-secondary">
-                      XXL
-                    </span>
-                  </div>
-                </div>
-                <div className="d-flex gap-10 flex-column mt-2 mb-3">
-                  <h3 className="product-heading">Color :</h3>
-                  <Color />
-                </div> */}
 
               <div className="border-bottom py-3">
                 <p className="price">₨ {price*quantity}</p>
@@ -173,20 +112,6 @@ const SingleProduct = (props) => {
               </div>
 
                 <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
-                  {/* <h3 className="product-heading">Quantity :</h3>
-                  <div className="">
-                    <input
-                      type="number"
-                      name=""
-                      min={1}
-                      max={10}
-                      value={quantity}
-                      onChange={(e) => setQuantity(e.target.value)}
-                      className="form-control"
-                      style={{ width: "70px" }}
-                      id=""
-                    />
-                  </div> */}
 
                   <div className="d-flex align-items-center gap-30 mt-3">
                     <button
@@ -360,19 +285,7 @@ const SingleProduct = (props) => {
                 aria-label="Close"
               ></button>
             </div>
-            {/* <div className="modal-body py-0">
-              <div className="d-flex align-items-center">
-                <div className="flex-grow-1 w-50">
-                  <img src={watch} className="img-fluid" alt="product imgae" />
-                </div>
-                <div className="d-flex flex-column flex-grow-1 w-50">
-                  <h6 className="mb-3">Apple Watch</h6>
-                  <p className="mb-1">Quantity: asgfd</p>
-                  <p className="mb-1">Color: asgfd</p>
-                  <p className="mb-1">Size: asgfd</p>
-                </div>
-              </div>
-            </div> */}
+
             <div className="modal-footer border-0 py-0 justify-content-center gap-30">
               <button type="button" className="button" data-bs-dismiss="modal">
                 View My Cart

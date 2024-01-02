@@ -11,25 +11,6 @@ import menu from "../images/menu.svg";
 const Header = (props) => {
   const { cartItemsCount, totalCost, loggedIn, setLoggedIn } = props;
 
-  // const logout = async () => {
-  //   await axios
-  //     .get("http://localhost:5000/api/user/logout", { withCredentials: true })
-  //     .then(() => {
-  //         console.log("Logged out");
-  //         Cookies.remove("token");
-  //         Cookies.remove("role");
-  //         setLoggedIn(false);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // };
-
-  // const logout = () => {
-  //   Cookies.remove("refreshToken");
-  //   Cookies.remove("role");
-  //   setLoggedIn(false);
-  // }
 
   const logout = async () => {
     await fetch("http://localhost:5000/api/user/logout", {

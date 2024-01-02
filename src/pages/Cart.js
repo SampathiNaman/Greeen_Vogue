@@ -28,14 +28,6 @@ const Cart = (props) => {
     return () => loggedIn && saveCart()
   }, [])
 
-  // useEffect(() => {
-  //   localStorage.setItem("quantity", JSON.stringify(quantity))
-  // }, [quantity])
-
-  // useEffect(() => {
-  //   localStorage.setItem("cart", JSON.stringify(cart))
-  // })
-
 
   return (
     <>

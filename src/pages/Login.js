@@ -18,15 +18,6 @@ const Login = (props) => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-
-    // fetch('http://localhost:5000/api/user/login', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     email: email,
-    //     password: password
-    //   })
-    // })
-
     if (email === "" || password === "") {
       setError('Enter Credentials');
       return;

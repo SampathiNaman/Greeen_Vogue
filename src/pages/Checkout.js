@@ -125,28 +125,7 @@ const Checkout = (props) => {
             </div>
           </div>
           <div className="col-5 mt-5">
-            {/* <div className="border-bottom py-4">
-              <div className="d-flex gap-10 mb-2 align-align-items-center">
-                <div className="w-75 d-flex gap-10">
-                  <div className="w-25 position-relative">
-                    <span
-                      style={{ top: "-10px", right: "2px" }}
-                      className="badge bg-secondary text-white rounded-circle p-2 position-absolute"
-                    >
-                      1
-                    </span>
-                    <img className="img-fluid" src="https://assets.ajio.com/medias/sys_master/root/20230801/OupT/64c80b90a9b42d15c97de9b2/-1117Wx1400H-466401156-black-MODEL2.jpg" alt="product" />
-                  </div>
-                  <div>
-                    <h5 className="total-price">₨ {totalCost}</h5>
-                    <p className="total-price">₨ {totalCost}</p>
-                  </div>
-                </div>
-                <div className="flex-grow-1">
-                  <h5 className="total">₨ 500</h5>
-                </div>
-              </div>
-            </div> */}
+
             <div className="border-bottom py-4">
               <div className="d-flex justify-content-between align-items-center">
                 <p className="total">Subtotal</p>
