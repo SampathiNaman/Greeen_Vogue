@@ -12,10 +12,13 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import watch from "../images/watch.jpg";
 import Container from "../components/Container";
+
+const SingleProduct = () => {
+  const props = {
+
 const SingleProduct = (props) => {
 
   const navigate = useNavigate();
-
 
   const {product, handleAddCart, handleAddWishlist, handleAddCompare} = props
   const {images, title, description, totalrating, price, brand, category} = product
@@ -23,6 +26,7 @@ const SingleProduct = (props) => {
   const img2 = images[1]
   const [selectedImg, setSelectedImg] = useState(img1);  
   const zoom = {
+
     width: 594,
     height: 600,
     zoomWidth: 600,
@@ -57,14 +61,39 @@ const SingleProduct = (props) => {
             <div className="other-product-images d-flex flex-wrap gap-15">
               <div>
                 <img
+
                   src={img1}
                   onClick={() => setSelectedImg(img1)}
+
+                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
                   className="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
+
+                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
+                  className="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
+
+                  className="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+
+                  src={img2}
+                  onClick={() => setSelectedImg(img2)}
+
+                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
+
                   src={img2}
                   onClick={() => setSelectedImg(img2)}
                   className="img-fluid"
@@ -112,6 +141,81 @@ const SingleProduct = (props) => {
               </div>
 
                 <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
+
+                  <div className="d-flex align-items-center gap-30 mt-3">
+
+              <div className=" py-3">
+                <div className="d-flex gap-10 align-items-center my-2">
+                  <h3 className="product-heading">Type :</h3>
+                  <p className="product-data">Watch</p>
+                </div>
+                <div className="d-flex gap-10 align-items-center my-2">
+                  <h3 className="product-heading">Brand :</h3>
+                  <p className="product-data">Havells</p>
+                </div>
+
+                <div className="d-flex gap-10 align-items-center my-2">
+                  <h3 className="product-heading">Category :</h3>
+                  <p className="product-data">Watch</p>
+                </div>
+
+                <div className="d-flex gap-10 align-items-center my-2">
+                  <h3 className="product-heading">Tags :</h3>
+                  <p className="product-data">Watch</p>
+                </div>
+
+                <div className="d-flex gap-10 align-items-center my-2">
+                  <h3 className="product-heading">Availablity :</h3>
+                  <p className="product-data">In Stock</p>
+                </div>
+                <div className="d-flex gap-10 flex-column mt-2 mb-3">
+                  <h3 className="product-heading">Size :</h3>
+                  <div className="d-flex flex-wrap gap-15">
+                    <span className="badge border border-1 bg-white text-dark border-secondary">
+                      S
+                    </span>
+                    <span className="badge border border-1 bg-white text-dark border-secondary">
+                      M
+                    </span>
+                    <span className="badge border border-1 bg-white text-dark border-secondary">
+                      XL
+                    </span>
+                    <span className="badge border border-1 bg-white text-dark border-secondary">
+                      XXL
+                    </span>
+                  </div>
+                </div>
+                <div className="d-flex gap-10 flex-column mt-2 mb-3">
+                  <h3 className="product-heading">Color :</h3>
+                  <Color />
+
+              <div className="border-bottom py-3">
+                <p className="price">₨ {price*quantity}</p>
+                <div className="d-flex align-items-center gap-10">
+                  <ReactStars
+                    count={5}
+                    size={24}
+                    value={parseInt(totalrating)}
+                    edit={false}
+                    activeColor="#ffd700"
+                  />
+                  <p className="mb-0 t-review">( 2 Reviews )</p>
+
+                </div>
+                <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
+                  <h3 className="product-heading">Quantity :</h3>
+                  <div className="">
+                    <input
+                      type="number"
+                      name=""
+                      min={1}
+                      max={10}
+                      className="form-control"
+                      style={{ width: "70px" }}
+                      id=""
+                    />
+                  </div>
+                  <div className="d-flex align-items-center gap-30 ms-5">
 
                   <div className="d-flex align-items-center gap-30 mt-3">
                     <button
@@ -284,6 +388,19 @@ const SingleProduct = (props) => {
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
+            </div>
+            <div className="modal-body py-0">
+              <div className="d-flex align-items-center">
+                <div className="flex-grow-1 w-50">
+                  <img src={watch} className="img-fluid" alt="product imgae" />
+                </div>
+                <div className="d-flex flex-column flex-grow-1 w-50">
+                  <h6 className="mb-3">Apple Watch</h6>
+                  <p className="mb-1">Quantity: asgfd</p>
+                  <p className="mb-1">Color: asgfd</p>
+                  <p className="mb-1">Size: asgfd</p>
+                </div>
+              </div>
             </div>
 
             <div className="modal-footer border-0 py-0 justify-content-center gap-30">
