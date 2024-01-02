@@ -107,7 +107,6 @@ function App() {
   }, []);
 
  
-
   const [role, setRole] = useState(Cookies.get('role')? Cookies.get('role') : "user");
 
   const [selectedProduct, setSelectedProduct] = useState({});
