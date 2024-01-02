@@ -29,6 +29,7 @@ const CompareProduct = () => {
                 <h6 className="price mb-3 mt-3">$ 100</h6>
 
                 <div>
+<<<<<<< Updated upstream
                   <div className="product-detail">
                     <h5>Brand:</h5>
                     <p>Havels</p>
@@ -36,15 +37,25 @@ const CompareProduct = () => {
                   <div className="product-detail">
                     <h5>Type:</h5>
                     <p>Watch</p>
+=======
+
+                  <div className="product-detail">
+                    <h5>Category:</h5>
+                    <p>{category}</p>
+>>>>>>> Stashed changes
                   </div>
                   <div className="product-detail">
                     <h5>Availablity:</h5>
                     <p>In Stock</p>
                   </div>
+<<<<<<< Updated upstream
                   <div className="product-detail">
                     <h5>Color:</h5>
                     <Color />
                   </div>
+=======
+
+>>>>>>> Stashed changes
                   <div className="product-detail">
                     <h5>Size:</h5>
                     <div className="d-flex gap-10">
@@ -55,6 +66,7 @@ const CompareProduct = () => {
                 </div>
               </div>
             </div>
+<<<<<<< Updated upstream
           </div>
           <div className="col-3">
             <div className="compare-product-card position-relative">
@@ -100,6 +112,12 @@ const CompareProduct = () => {
               </div>
             </div>
           </div>
+=======
+          </div>              
+            )
+          })}
+          
+>>>>>>> Stashed changes
         </div>
       </Container>
     </>

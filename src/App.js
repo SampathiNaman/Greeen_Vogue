@@ -22,6 +22,119 @@ import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 function App() {
+<<<<<<< Updated upstream
+=======
+  const [loggedIn, setLoggedIn] = useState(Cookies.get("refreshToken") !== undefined);
+
+  const [womensWear, setWomensWear] = useState([]);
+  const [mensWear, setMensWear] = useState([]);
+  const [footWear, setFootWear] = useState([]);
+
+  const fetchProducts = async () => {
+    await fetch('http://localhost:5000/api/product')
+      .then((res) => res.json())
+      .then((data) => {
+        let women = [];
+        let men = [];
+        let foot = [];
+        data.forEach((product) => {
+          switch (product.category) {
+            case "Women's Wear":
+              women.push(product);
+              break;
+            case "Men's Wear":
+                men.push(product);
+                break;
+            case "Foot Wear":
+                  foot.push(product);
+                  break;
+            default:
+              break;
+          }
+        })
+        setWomensWear(women);
+        setMensWear(men);
+        setFootWear(foot);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const fetchCart = async () => {
+    await fetch("http://localhost:5000/api/user/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${Cookies.get("refreshToken")}`
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        let quantityArray = [];
+        let productArray = [];
+        data.products.forEach((item) => {
+          quantityArray.push(item.count);
+          productArray.push(item.product);
+        });
+        setQuantity(quantityArray);
+        setCart(productArray);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  const fetchWishlist = async () => {
+    await fetch("http://localhost:5000/api/user/wishlist", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${Cookies.get("refreshToken")}`
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setWishlist(data.wishlist);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    fetchProducts();
+    if (loggedIn) {
+      fetchCart();
+      fetchWishlist();
+    }
+  }, []);
+
+ 
+  const [role, setRole] = useState(Cookies.get('role')? Cookies.get('role') : "user");
+
+  const [selectedProduct, setSelectedProduct] = useState({});
+  const [cart, setCart] = useState([]);
+  const [quantity, setQuantity] = useState([]);
+  const totalCost = cart ? cart
+    .map((item, i) => item.price * quantity[i])
+    .reduce((a, b) => a + b, 0) : 0;
+
+  const [wishlist, setWishlist] = useState([]);
+  const [compare, setCompare] = useState(
+    localStorage.getItem("compare")
+      ? JSON.parse(localStorage.getItem("compare"))
+      : []
+  );
+
+  const handleAddCart = (product) => {
+    setCart([...cart, product]);
+    setQuantity([...quantity, 1]);
+  };
+
+  const handleAddWishlist = (product) => {
+    setWishlist([...wishlist, product]);
+  };
+
+  const handleAddCompare = (product) => {
+    setCompare([...compare, product]);
+  };
+
+>>>>>>> Stashed changes
   return (
     <>
       <BrowserRouter>

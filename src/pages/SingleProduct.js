@@ -10,8 +10,21 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import watch from "../images/watch.jpg";
 import Container from "../components/Container";
+<<<<<<< Updated upstream
 const SingleProduct = () => {
   const props = {
+=======
+const SingleProduct = (props) => {
+
+  const navigate = useNavigate();
+
+  const {product, handleAddCart, handleAddWishlist, handleAddCompare} = props
+  const {images, title, description, totalrating, price, brand, category} = product
+  const img1 = images[0]
+  const img2 = images[1]
+  const [selectedImg, setSelectedImg] = useState(img1);  
+  const zoom = {
+>>>>>>> Stashed changes
     width: 594,
     height: 600,
     zoomWidth: 600,
@@ -52,6 +65,7 @@ const SingleProduct = () => {
               </div>
               <div>
                 <img
+<<<<<<< Updated upstream
                   src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
                   className="img-fluid"
                   alt=""
@@ -67,6 +81,10 @@ const SingleProduct = () => {
               <div>
                 <img
                   src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
+=======
+                  src={img2}
+                  onClick={() => setSelectedImg(img2)}
+>>>>>>> Stashed changes
                   className="img-fluid"
                   alt=""
                 />
@@ -97,6 +115,7 @@ const SingleProduct = () => {
                 </a>
               </div>
               <div className=" py-3">
+<<<<<<< Updated upstream
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Type :</h3>
                   <p className="product-data">Watch</p>
@@ -105,18 +124,25 @@ const SingleProduct = () => {
                   <h3 className="product-heading">Brand :</h3>
                   <p className="product-data">Havells</p>
                 </div>
+=======
+>>>>>>> Stashed changes
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Category :</h3>
                   <p className="product-data">Watch</p>
                 </div>
+<<<<<<< Updated upstream
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Tags :</h3>
                   <p className="product-data">Watch</p>
                 </div>
+=======
+
+>>>>>>> Stashed changes
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Availablity :</h3>
                   <p className="product-data">In Stock</p>
                 </div>
+<<<<<<< Updated upstream
                 <div className="d-flex gap-10 flex-column mt-2 mb-3">
                   <h3 className="product-heading">Size :</h3>
                   <div className="d-flex flex-wrap gap-15">
@@ -137,8 +163,23 @@ const SingleProduct = () => {
                 <div className="d-flex gap-10 flex-column mt-2 mb-3">
                   <h3 className="product-heading">Color :</h3>
                   <Color />
+=======
+
+              <div className="border-bottom py-3">
+                <p className="price">₨ {price*quantity}</p>
+                <div className="d-flex align-items-center gap-10">
+                  <ReactStars
+                    count={5}
+                    size={24}
+                    value={parseInt(totalrating)}
+                    edit={false}
+                    activeColor="#ffd700"
+                  />
+                  <p className="mb-0 t-review">( 2 Reviews )</p>
+>>>>>>> Stashed changes
                 </div>
                 <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
+<<<<<<< Updated upstream
                   <h3 className="product-heading">Quantity :</h3>
                   <div className="">
                     <input
@@ -152,6 +193,11 @@ const SingleProduct = () => {
                     />
                   </div>
                   <div className="d-flex align-items-center gap-30 ms-5">
+=======
+
+
+                  <div className="d-flex align-items-center gap-30 mt-3">
+>>>>>>> Stashed changes
                     <button
                       className="button border-0"
                       data-bs-toggle="modal"
@@ -325,6 +371,7 @@ const SingleProduct = () => {
                 aria-label="Close"
               ></button>
             </div>
+<<<<<<< Updated upstream
             <div className="modal-body py-0">
               <div className="d-flex align-items-center">
                 <div className="flex-grow-1 w-50">
@@ -338,6 +385,9 @@ const SingleProduct = () => {
                 </div>
               </div>
             </div>
+=======
+
+>>>>>>> Stashed changes
             <div className="modal-footer border-0 py-0 justify-content-center gap-30">
               <button type="button" className="button" data-bs-dismiss="modal">
                 View My Cart

@@ -7,7 +7,6 @@ import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
 // import { services } from "../utils/Data";
 
-// useState , useEffect, axios , fetch ,  {auth-> localstorage cookies}
 
 const Home = () => {
   return (
@@ -21,12 +20,16 @@ const Home = () => {
                 className="img-fluid rounded-3"
                 alt="main banner"
               />
+<<<<<<< Updated upstream
               <div className="main-banner-content position-absolute">
                 <h4>SUPERCHARGED FOR PROS.</h4>
                 <h5>iPad S13+ Pro.</h5>
                 <p>From $999.00 or $41.62/mo.</p>
                 <Link className="button">BUY NOW</Link>
               </div>
+=======
+
+>>>>>>> Stashed changes
             </div>
           </div>
           <div className="col-6">
@@ -37,6 +40,7 @@ const Home = () => {
                   className="img-fluid rounded-3"
                   alt="main banner"
                 />
+<<<<<<< Updated upstream
                 <div className="small-banner-content position-absolute">
                   <h4>Best Sake</h4>
                   <h5>iPad S13+ Pro.</h5>
@@ -44,6 +48,9 @@ const Home = () => {
                     From $999.00 <br /> or $41.62/mo.
                   </p>
                 </div>
+=======
+
+>>>>>>> Stashed changes
               </div>
               <div className="small-banner position-relative">
                 <img
@@ -51,6 +58,7 @@ const Home = () => {
                   className="img-fluid rounded-3"
                   alt="main banner"
                 />
+<<<<<<< Updated upstream
                 <div className="small-banner-content position-absolute">
                   <h4>NEW ARRIVAL</h4>
                   <h5>But IPad Air</h5>
@@ -58,6 +66,9 @@ const Home = () => {
                     From $999.00 <br /> or $41.62/mo.
                   </p>
                 </div>
+=======
+
+>>>>>>> Stashed changes
               </div>
               <div className="small-banner position-relative ">
                 <img
@@ -65,6 +76,7 @@ const Home = () => {
                   className="img-fluid rounded-3"
                   alt="main banner"
                 />
+<<<<<<< Updated upstream
                 <div className="small-banner-content position-absolute">
                   <h4>NEW ARRIVAL</h4>
                   <h5>But IPad Air</h5>
@@ -72,6 +84,9 @@ const Home = () => {
                     From $999.00 <br /> or $41.62/mo.
                   </p>
                 </div>
+=======
+
+>>>>>>> Stashed changes
               </div>
               <div className="small-banner position-relative ">
                 <img
@@ -79,6 +94,7 @@ const Home = () => {
                   className="img-fluid rounded-3"
                   alt="main banner"
                 />
+<<<<<<< Updated upstream
                 <div className="small-banner-content position-absolute">
                   <h4>NEW ARRIVAL</h4>
                   <h5>But IPad Air</h5>
@@ -86,11 +102,14 @@ const Home = () => {
                     From $999.00 <br /> or $41.62/mo.
                   </p>
                 </div>
+=======
+>>>>>>> Stashed changes
               </div>
             </div>
           </div>
         </div>
       </Container>
+<<<<<<< Updated upstream
       {/* <Container class1="home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
@@ -174,11 +193,15 @@ const Home = () => {
           </div>
         </div>
       </Container>
+=======
+
+>>>>>>> Stashed changes
       <Container class1="featured-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
             <h3 className="section-heading">Featured Collection</h3>
           </div>
+<<<<<<< Updated upstream
           <ProductCard />
           <ProductCard />
           <ProductCard />
@@ -262,6 +285,24 @@ const Home = () => {
           <SpecialProduct />
           <SpecialProduct />
           <SpecialProduct />
+=======
+
+          <div className="row">
+          {womensWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={product} />)}
+          </div>
+        </div>
+      </Container>
+
+      <Container class1="popular-wrapper py-5 home-wrapper-2">
+        <div className="row">
+          <div className="col-12" id='mensWear'>
+            <h3 className="section-heading">Gens Collection</h3>
+          </div>
+        </div>
+        <div className="row align-items-stretch">
+
+          {mensWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={{...product, "type": "Clothing", "category": "Men's Wear"}} />)}
+>>>>>>> Stashed changes
         </div>
       </Container>
       <Container class1="popular-wrapper py-5 home-wrapper-2">
@@ -312,6 +353,7 @@ const Home = () => {
         </div>
       </Container>
 
+<<<<<<< Updated upstream
       <Container class1="blog-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
@@ -333,6 +375,9 @@ const Home = () => {
           </div>
         </div>
       </Container>
+=======
+
+>>>>>>> Stashed changes
     </>
   );
 };
