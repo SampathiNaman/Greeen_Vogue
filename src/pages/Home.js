@@ -5,42 +5,47 @@ import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
+import { useEffect } from "react";
 // import { services } from "../utils/Data";
 
 
-const Home = () => {
+const Home = (props) => {
+  const {womensWear, mensWear, footWear, setSelectedProduct} = props;
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+  }
+
   return (
     <>
       <Container class1="home-wrapper-1 py-5">
         <div className="row">
-          <div className="col-6">
+          <div className="col-12 col-md-6">
             <div className="main-banner position-relative ">
               <img
-                src="images/main-banner-1.jpg"
+                src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/a5eda5113851481.602fdc6275581.png"
                 className="img-fluid rounded-3"
                 alt="main banner"
               />
-<<<<<<< Updated upstream
+
               <div className="main-banner-content position-absolute">
                 <h4>SUPERCHARGED FOR PROS.</h4>
                 <h5>iPad S13+ Pro.</h5>
                 <p>From $999.00 or $41.62/mo.</p>
                 <Link className="button">BUY NOW</Link>
               </div>
-=======
 
->>>>>>> Stashed changes
             </div>
           </div>
-          <div className="col-6">
-            <div className="d-flex flex-wrap gap-10 justify-content-between align-items-center">
+          <div className="col-12 col-md-6">
+            <div className="d-flex flex-wrap gap-2 justify-content-between align-items-center">
               <div className="small-banner position-relative">
                 <img
-                  src="images/catbanner-01.jpg"
+                  src="https://sandwichfashion.ca/cdn/shop/files/titel1400x1000_New_in_banner_-_V2_1024x.jpg?v=1677015305"
                   className="img-fluid rounded-3"
                   alt="main banner"
                 />
-<<<<<<< Updated upstream
+
                 <div className="small-banner-content position-absolute">
                   <h4>Best Sake</h4>
                   <h5>iPad S13+ Pro.</h5>
@@ -48,17 +53,15 @@ const Home = () => {
                     From $999.00 <br /> or $41.62/mo.
                   </p>
                 </div>
-=======
 
->>>>>>> Stashed changes
               </div>
               <div className="small-banner position-relative">
                 <img
-                  src="images/catbanner-02.jpg"
+                  src="https://www.babycouture.in/blog/wp-content/uploads/2016/08/Little_girl_shopping.jpg"
                   className="img-fluid rounded-3"
                   alt="main banner"
                 />
-<<<<<<< Updated upstream
+
                 <div className="small-banner-content position-absolute">
                   <h4>NEW ARRIVAL</h4>
                   <h5>But IPad Air</h5>
@@ -66,17 +69,15 @@ const Home = () => {
                     From $999.00 <br /> or $41.62/mo.
                   </p>
                 </div>
-=======
 
->>>>>>> Stashed changes
               </div>
               <div className="small-banner position-relative ">
                 <img
-                  src="images/catbanner-03.jpg"
+                  src="https://img-d.streetstylestore.com/homepage-images/oct-23/2for1099ShoeCover_31Oct.jpg"
                   className="img-fluid rounded-3"
                   alt="main banner"
                 />
-<<<<<<< Updated upstream
+
                 <div className="small-banner-content position-absolute">
                   <h4>NEW ARRIVAL</h4>
                   <h5>But IPad Air</h5>
@@ -84,17 +85,15 @@ const Home = () => {
                     From $999.00 <br /> or $41.62/mo.
                   </p>
                 </div>
-=======
 
->>>>>>> Stashed changes
               </div>
               <div className="small-banner position-relative ">
                 <img
-                  src="images/catbanner-04.jpg"
+                  src="https://img.freepik.com/free-photo/young-handsome-man-choosing-clothes-shop_1303-19720.jpg?w=996&t=st=1699394358~exp=1699394958~hmac=c918340cba4d14db94bcf414266a271d776439943d4b3e865332a6a0dfd49ddc"
                   className="img-fluid rounded-3"
                   alt="main banner"
                 />
-<<<<<<< Updated upstream
+
                 <div className="small-banner-content position-absolute">
                   <h4>NEW ARRIVAL</h4>
                   <h5>But IPad Air</h5>
@@ -102,14 +101,13 @@ const Home = () => {
                     From $999.00 <br /> or $41.62/mo.
                   </p>
                 </div>
-=======
->>>>>>> Stashed changes
+
               </div>
             </div>
           </div>
         </div>
       </Container>
-<<<<<<< Updated upstream
+
       {/* <Container class1="home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
@@ -188,20 +186,22 @@ const Home = () => {
                   <p>10 Items</p>
                 </div>
                 <img src="images/headphone.jpg" alt="camera" />
+
               </div>
             </div>
           </div>
         </div>
       </Container>
-=======
 
->>>>>>> Stashed changes
       <Container class1="featured-wrapper py-5 home-wrapper-2">
         <div className="row">
-          <div className="col-12">
-            <h3 className="section-heading">Featured Collection</h3>
+          <div className="col-12" id='womensWear'>
+            <h3 className="section-heading">Ladies Collection</h3>
           </div>
-<<<<<<< Updated upstream
+
+          <div className="row">
+          {womensWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={product} />)}
+
           <ProductCard />
           <ProductCard />
           <ProductCard />
@@ -270,22 +270,28 @@ const Home = () => {
                 </p>
               </div>
             </div>
+
           </div>
         </div>
       </Container>
 
-      <Container class1="special-wrapper py-5 home-wrapper-2">
+      <Container class1="popular-wrapper py-5 home-wrapper-2">
         <div className="row">
-          <div className="col-12">
-            <h3 className="section-heading">Special Products</h3>
+          <div className="col-12" id='mensWear'>
+            <h3 className="section-heading">Gens Collection</h3>
           </div>
         </div>
+
+        <div className="row align-items-stretch">
+
+          {mensWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={{...product, "type": "Clothing", "category": "Men's Wear"}} />)}
+
         <div className="row">
           <SpecialProduct />
           <SpecialProduct />
           <SpecialProduct />
           <SpecialProduct />
-=======
+
 
           <div className="row">
           {womensWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={product} />)}
@@ -302,20 +308,17 @@ const Home = () => {
         <div className="row align-items-stretch">
 
           {mensWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={{...product, "type": "Clothing", "category": "Men's Wear"}} />)}
->>>>>>> Stashed changes
+
         </div>
       </Container>
       <Container class1="popular-wrapper py-5 home-wrapper-2">
         <div className="row">
-          <div className="col-12">
-            <h3 className="section-heading">Our Popular Products</h3>
+          <div className="col-12" id='footWear'>
+            <h3 className="section-heading">Foot Wear</h3>
           </div>
         </div>
         <div className="row">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {footWear.map(product => <ProductCard key={product._id} handleProductClick={handleProductClick} product={{...product, "type": "Shoes", "category": "Foot Wear"}} />)}
         </div>
       </Container>
       <Container class1="marque-wrapper home-wrapper-2 py-5">
@@ -324,28 +327,25 @@ const Home = () => {
             <div className="marquee-inner-wrapper card-wrapper">
               <Marquee className="d-flex">
                 <div className="mx-4 w-25">
-                  <img src="images/brand-01.png" alt="brand" />
+                  <img src="https://static.vecteezy.com/system/resources/thumbnails/010/994/412/small/nike-logo-black-with-name-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg" alt="brand" />
                 </div>
                 <div className="mx-4 w-25">
-                  <img src="images/brand-02.png" alt="brand" />
+                  <img src="https://media.designrush.com/inspiration_images/292255/conversions/levi_logo_4_82250bd000e1-mobile.jpg" alt="brand" />
                 </div>
                 <div className="mx-4 w-25">
-                  <img src="images/brand-03.png" alt="brand" />
+                  <img src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0002/6174/brand.gif?itok=prupZsGt" alt="brand" />
                 </div>
                 <div className="mx-4 w-25">
-                  <img src="images/brand-04.png" alt="brand" />
+                  <img src="https://seeklogo.com/images/A/allen-solly-logo-D61D9C1551-seeklogo.com.png" alt="brand" />
                 </div>
                 <div className="mx-4 w-25">
-                  <img src="images/brand-05.png" alt="brand" />
+                  <img src="https://static.vecteezy.com/system/resources/thumbnails/010/994/431/small/puma-logo-black-symbol-with-name-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg" alt="brand" />
                 </div>
                 <div className="mx-4 w-25">
-                  <img src="images/brand-06.png" alt="brand" />
+                  <img src="https://www.freepnglogos.com/uploads/gucci-logo-png/roma-optical-gucci-logo-free-download-0.png" alt="brand" />
                 </div>
                 <div className="mx-4 w-25">
-                  <img src="images/brand-07.png" alt="brand" />
-                </div>
-                <div className="mx-4 w-25">
-                  <img src="images/brand-08.png" alt="brand" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp3-4HYI5MLQZ6a1WVs2PgAYG_0JKE8rzk0Q&usqp=CAU" alt="brand" />
                 </div>
               </Marquee>
             </div>
@@ -353,7 +353,7 @@ const Home = () => {
         </div>
       </Container>
 
-<<<<<<< Updated upstream
+
       <Container class1="blog-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
@@ -375,9 +375,6 @@ const Home = () => {
           </div>
         </div>
       </Container>
-=======
-
->>>>>>> Stashed changes
     </>
   );
 };

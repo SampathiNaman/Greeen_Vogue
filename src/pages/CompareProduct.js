@@ -1,20 +1,34 @@
-import React from "react";
+import React, {useEffect} from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Color from "../components/Color";
 import Meta from "../components/Meta";
 import watch from "../images/watch.jpg";
 import Container from "../components/Container";
+import ReactStars from "react-rating-stars-component";
 
-const CompareProduct = () => {
+const CompareProduct = (props) => {
+  const {compare, setCompare} = props;
+
+  useEffect(() => {
+    localStorage.setItem("compare", JSON.stringify(compare))
+  })
   return (
     <>
       <Meta title={"Compare Products"} />
       <BreadCrumb title="Compare Products" />
       <Container class1="compare-product-wrapper py-5 home-wrapper-2">
+      {compare.length==0 && <h1 className="text-center">Add Products to Compare</h1>}        
         <div className="row">
+          {compare.map((product) => {
+            const {_id, images, title, totalrating, price, category} = product
+            const img1 = images[0]
+            return (
           <div className="col-3">
             <div className="compare-product-card position-relative">
               <img
+
+                onClick={() => setCompare(compare.filter((item) => item._id !== _id))}
+
                 src={watch}
                 alt="cross"
                 className="position-absolute cross img-fluid"
@@ -29,7 +43,7 @@ const CompareProduct = () => {
                 <h6 className="price mb-3 mt-3">$ 100</h6>
 
                 <div>
-<<<<<<< Updated upstream
+
                   <div className="product-detail">
                     <h5>Brand:</h5>
                     <p>Havels</p>
@@ -37,25 +51,24 @@ const CompareProduct = () => {
                   <div className="product-detail">
                     <h5>Type:</h5>
                     <p>Watch</p>
-=======
+
 
                   <div className="product-detail">
                     <h5>Category:</h5>
                     <p>{category}</p>
->>>>>>> Stashed changes
+
                   </div>
                   <div className="product-detail">
                     <h5>Availablity:</h5>
                     <p>In Stock</p>
                   </div>
-<<<<<<< Updated upstream
+
                   <div className="product-detail">
                     <h5>Color:</h5>
                     <Color />
                   </div>
-=======
 
->>>>>>> Stashed changes
+
                   <div className="product-detail">
                     <h5>Size:</h5>
                     <div className="d-flex gap-10">
@@ -66,41 +79,43 @@ const CompareProduct = () => {
                 </div>
               </div>
             </div>
-<<<<<<< Updated upstream
+
           </div>
           <div className="col-3">
             <div className="compare-product-card position-relative">
               <img
+
                 src="images/cross.svg"
                 alt="cross"
                 className="position-absolute cross img-fluid"
               />
               <div className="product-card-image">
-                <img src={watch} alt="watch" />
+                <img src={img1} alt="dress" className="w-100" />
               </div>
               <div className="compare-product-details">
                 <h5 className="title">
-                  Honor T1 7.0 1 GB RAM 8 GB ROM 7 Inch With Wi-Fi+3G Tablet
+                {title}
                 </h5>
-                <h6 className="price mb-3 mt-3">$ 100</h6>
+                <ReactStars
+              count={5}
+              size={24}
+              value={parseInt(totalrating)}
+              edit={false}
+              activeColor="#ffd700"
+            />
+                <h6 className="price mb-3 mt-3">₨ {price}</h6>
 
                 <div>
+
                   <div className="product-detail">
-                    <h5>Brand:</h5>
-                    <p>Havels</p>
-                  </div>
-                  <div className="product-detail">
-                    <h5>Type:</h5>
-                    <p>Watch</p>
+                    <h5>Category:</h5>
+                    <p>{category}</p>
                   </div>
                   <div className="product-detail">
                     <h5>Availablity:</h5>
                     <p>In Stock</p>
                   </div>
-                  <div className="product-detail">
-                    <h5>Color:</h5>
-                    <Color />
-                  </div>
+
                   <div className="product-detail">
                     <h5>Size:</h5>
                     <div className="d-flex gap-10">
@@ -111,13 +126,14 @@ const CompareProduct = () => {
                 </div>
               </div>
             </div>
+
           </div>
-=======
+
+
           </div>              
             )
           })}
           
->>>>>>> Stashed changes
         </div>
       </Container>
     </>

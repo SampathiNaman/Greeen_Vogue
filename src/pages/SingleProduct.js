@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import Cookies from "js-cookie";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import ProductCard from "../components/ProductCard";
@@ -10,10 +12,10 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import watch from "../images/watch.jpg";
 import Container from "../components/Container";
-<<<<<<< Updated upstream
+
 const SingleProduct = () => {
   const props = {
-=======
+
 const SingleProduct = (props) => {
 
   const navigate = useNavigate();
@@ -24,15 +26,16 @@ const SingleProduct = (props) => {
   const img2 = images[1]
   const [selectedImg, setSelectedImg] = useState(img1);  
   const zoom = {
->>>>>>> Stashed changes
+
     width: 594,
     height: 600,
     zoomWidth: 600,
-
-    img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg",
+    img: selectedImg,
   };
 
-  const [orderedProduct, setorderedProduct] = useState(true);
+  const [quantity, setQuantity] = useState(1);
+  const [orderedProduct, setorderedProduct] = useState(false);
+
   const copyToClipboard = (text) => {
     console.log("text", text);
     var textField = document.createElement("textarea");
@@ -50,14 +53,18 @@ const SingleProduct = (props) => {
       <Container class1="main-product-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-6">
-            <div className="main-product-image">
-              <div>
-                <ReactImageZoom {...props} />
+            <div>
+              <div className="main-product-image">
+                <ReactImageZoom {...zoom} />
               </div>
             </div>
             <div className="other-product-images d-flex flex-wrap gap-15">
               <div>
                 <img
+
+                  src={img1}
+                  onClick={() => setSelectedImg(img1)}
+
                   src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
                   className="img-fluid"
                   alt=""
@@ -65,7 +72,7 @@ const SingleProduct = (props) => {
               </div>
               <div>
                 <img
-<<<<<<< Updated upstream
+
                   src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
                   className="img-fluid"
                   alt=""
@@ -74,37 +81,55 @@ const SingleProduct = (props) => {
               <div>
                 <img
                   src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
+
                   className="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
-=======
+
                   src={img2}
                   onClick={() => setSelectedImg(img2)}
->>>>>>> Stashed changes
+
+                  src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
+
+                  src={img2}
+                  onClick={() => setSelectedImg(img2)}
                   className="img-fluid"
                   alt=""
                 />
               </div>
+
             </div>
           </div>
           <div className="col-6">
             <div className="main-product-details">
               <div className="border-bottom">
                 <h3 className="title">
-                  Kids Headphones Bulk 10 Pack Multi Colored For Students
+                {title}
                 </h3>
               </div>
+
+              <div className=" py-3">
+
+                <div className="d-flex gap-10 align-items-center my-2">
+                  <h3 className="product-heading">Category :</h3>
+                  <p className="product-data">{category}</p>
+                </div>
+
+                <div className="d-flex gap-10 align-items-center my-2">
+                  <h3 className="product-heading">Availablity :</h3>
+                  <p className="product-data">In Stock</p>
+                </div>
+
               <div className="border-bottom py-3">
-                <p className="price">$ 100</p>
+                <p className="price">₨ {price*quantity}</p>
                 <div className="d-flex align-items-center gap-10">
                   <ReactStars
                     count={5}
                     size={24}
-                    value={4}
+                    value={parseInt(totalrating)}
                     edit={false}
                     activeColor="#ffd700"
                   />
@@ -114,8 +139,12 @@ const SingleProduct = (props) => {
                   Write a Review
                 </a>
               </div>
+
+                <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
+
+                  <div className="d-flex align-items-center gap-30 mt-3">
+
               <div className=" py-3">
-<<<<<<< Updated upstream
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Type :</h3>
                   <p className="product-data">Watch</p>
@@ -124,25 +153,21 @@ const SingleProduct = (props) => {
                   <h3 className="product-heading">Brand :</h3>
                   <p className="product-data">Havells</p>
                 </div>
-=======
->>>>>>> Stashed changes
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Category :</h3>
                   <p className="product-data">Watch</p>
                 </div>
-<<<<<<< Updated upstream
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Tags :</h3>
                   <p className="product-data">Watch</p>
                 </div>
-=======
 
->>>>>>> Stashed changes
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Availablity :</h3>
                   <p className="product-data">In Stock</p>
                 </div>
-<<<<<<< Updated upstream
                 <div className="d-flex gap-10 flex-column mt-2 mb-3">
                   <h3 className="product-heading">Size :</h3>
                   <div className="d-flex flex-wrap gap-15">
@@ -163,7 +188,6 @@ const SingleProduct = (props) => {
                 <div className="d-flex gap-10 flex-column mt-2 mb-3">
                   <h3 className="product-heading">Color :</h3>
                   <Color />
-=======
 
               <div className="border-bottom py-3">
                 <p className="price">₨ {price*quantity}</p>
@@ -176,10 +200,9 @@ const SingleProduct = (props) => {
                     activeColor="#ffd700"
                   />
                   <p className="mb-0 t-review">( 2 Reviews )</p>
->>>>>>> Stashed changes
+
                 </div>
                 <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
-<<<<<<< Updated upstream
                   <h3 className="product-heading">Quantity :</h3>
                   <div className="">
                     <input
@@ -193,32 +216,29 @@ const SingleProduct = (props) => {
                     />
                   </div>
                   <div className="d-flex align-items-center gap-30 ms-5">
-=======
-
 
                   <div className="d-flex align-items-center gap-30 mt-3">
->>>>>>> Stashed changes
                     <button
                       className="button border-0"
-                      data-bs-toggle="modal"
                       data-bs-target="#staticBackdrop"
                       type="button"
+                      onClick={() => {handleAddCart(product); setorderedProduct(true)}}
                     >
-                      Add to Cart
+                      {orderedProduct ? "Product Added": "Add to Cart" }
                     </button>
-                    <button className="button signup">Buy It Now</button>
+                    {/* <button className="button signup">Buy It Now</button> */}
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-15">
-                  <div>
-                    <a href="">
+                  <div onClick={() => handleAddCompare(product)}>
+                    <Link to='/compare-product'>
                       <TbGitCompare className="fs-5 me-2" /> Add to Compare
-                    </a>
+                    </Link>
                   </div>
-                  <div>
-                    <a href="">
+                  <div onClick={() => handleAddWishlist(product)}>
+                    <Link to='/wishlist'>
                       <AiOutlineHeart className="fs-5 me-2" /> Add to Wishlist
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="d-flex gap-10 flex-column  my-3">
@@ -253,10 +273,7 @@ const SingleProduct = (props) => {
             <h4>Description</h4>
             <div className="bg-white p-3">
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Tenetur nisi similique illum aut perferendis voluptas, quisquam
-                obcaecati qui nobis officia. Voluptatibus in harum deleniti
-                labore maxime officia esse eos? Repellat?
+                {description}
               </p>
             </div>
           </div>
@@ -274,20 +291,18 @@ const SingleProduct = (props) => {
                     <ReactStars
                       count={5}
                       size={24}
-                      value={4}
+                      value={parseInt(totalrating)}
                       edit={false}
                       activeColor="#ffd700"
                     />
                     <p className="mb-0">Based on 2 Reviews</p>
                   </div>
                 </div>
-                {orderedProduct && (
                   <div>
                     <a className="text-dark text-decoration-underline" href="">
                       Write a Review
                     </a>
                   </div>
-                )}
               </div>
               <div className="review-form py-4">
                 <h4>Write a Review</h4>
@@ -296,7 +311,7 @@ const SingleProduct = (props) => {
                     <ReactStars
                       count={5}
                       size={24}
-                      value={4}
+                      value={5}
                       edit={true}
                       activeColor="#ffd700"
                     />
@@ -312,14 +327,15 @@ const SingleProduct = (props) => {
                     ></textarea>
                   </div>
                   <div className="d-flex justify-content-end">
-                    <button className="button border-0">Submit Review</button>
+                    <button className="button border-0" type='submit'>Submit Review</button>
                   </div>
                 </form>
               </div>
+
               <div className="reviews mt-4">
                 <div className="review">
                   <div className="d-flex gap-10 align-items-center">
-                    <h6 className="mb-0">Navdeep</h6>
+                    <h6 className="mb-0">Mandeep</h6>
                     <ReactStars
                       count={5}
                       size={24}
@@ -337,6 +353,8 @@ const SingleProduct = (props) => {
                   </p>
                 </div>
               </div>
+
+
             </div>
           </div>
         </div>
@@ -357,7 +375,7 @@ const SingleProduct = (props) => {
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
@@ -371,7 +389,6 @@ const SingleProduct = (props) => {
                 aria-label="Close"
               ></button>
             </div>
-<<<<<<< Updated upstream
             <div className="modal-body py-0">
               <div className="d-flex align-items-center">
                 <div className="flex-grow-1 w-50">
@@ -385,9 +402,7 @@ const SingleProduct = (props) => {
                 </div>
               </div>
             </div>
-=======
 
->>>>>>> Stashed changes
             <div className="modal-footer border-0 py-0 justify-content-center gap-30">
               <button type="button" className="button" data-bs-dismiss="modal">
                 View My Cart

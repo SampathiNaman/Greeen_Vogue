@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import axios from "axios";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
@@ -21,9 +23,9 @@ import TermAndContions from "./pages/TermAndContions";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import SellProduct from "./pages/SellProduct";
+
 function App() {
-<<<<<<< Updated upstream
-=======
   const [loggedIn, setLoggedIn] = useState(Cookies.get("refreshToken") !== undefined);
 
   const [womensWear, setWomensWear] = useState([]);
@@ -134,24 +136,81 @@ function App() {
     setCompare([...compare, product]);
   };
 
->>>>>>> Stashed changes
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <Layout
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                cartItemsCount={quantity.reduce((a, b) => a + b, 0)}
+                totalCost={totalCost}
+              />
+            }
+          >
+            <Route
+              index
+              element={
+                <Home
+                  womensWear={womensWear}
+                  mensWear={mensWear}
+                  footWear={footWear}
+                  setSelectedProduct={setSelectedProduct}
+                />
+              }
+            />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="product" element={<OurStore />} />
-            <Route path="product/:id" element={<SingleProduct />} />
-            <Route path="blogs" element={<Blog />} />
-            <Route path="blog/:id" element={<SingleBlog />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="checkout" element={<Checkout />} />
-            <Route path="compare-product" element={<CompareProduct />} />
-            <Route path="wishlist" element={<Wishlist />} />
-            <Route path="login" element={<Login />} />
+            {/* <Route path="product" element={<OurStore />} /> */}
+            <Route path="sell-product" element={<SellProduct />} />
+            {selectedProduct && (
+              <Route
+                path="product/:id"
+                element={
+                  <SingleProduct
+                    product={selectedProduct}
+                    handleAddCart={handleAddCart}
+                    handleAddWishlist={handleAddWishlist}
+                    handleAddCompare={handleAddCompare}
+                  />
+                }
+              />
+            )}
+            {/* <Route path="blogs" element={<Blog />} />
+            <Route path="blog/:id" element={<SingleBlog />} /> */}
+            <Route
+              path="cart"
+              element={
+                <Cart
+                  cart={cart}
+                  setCart={setCart}
+                  quantity={quantity}
+                  setQuantity={setQuantity}
+                  totalCost={totalCost}
+                  loggedIn={loggedIn}
+                />
+              }
+            />
+            <Route
+              path="checkout"
+              element={<Checkout totalCost={totalCost} />}
+            />
+            <Route
+              path="compare-product"
+              element={
+                <CompareProduct compare={compare} setCompare={setCompare} />
+              }
+            />
+            <Route
+              path="wishlist"
+              element={
+                <Wishlist wishlist={wishlist} setWishlist={setWishlist} loggedIn={loggedIn} />
+              }
+            />
+            <Route path="login" element={<Login setLoggedIn={setLoggedIn} />} />
             <Route path="forgot-password" element={<Forgotpassword />} />
             <Route path="signup" element={<Signup />} />
             <Route path="reset-password" element={<Resetpassword />} />

@@ -1,31 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
-const Login = () => {
+const Login = (props) => {
+  const {setLoggedIn} = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
 
-  const loginHandler = (e) => {
+  const navigate = useNavigate();
+
+
+  const loginHandler = async (e) => {
     e.preventDefault();
+    if (email === "" || password === "") {
+      setError('Enter Credentials');
+      return;
+    }
 
-
-    axios
-      .post("http://localhost:5000/api/user/login", {
+    await axios.post("http://localhost:5000/api/user/login", {
         email: email,
         password: password,
       })
       .then((res) => {
-        console.log(res);
-
+        if (res.status === 200) {
+          Cookies.set('refreshToken', res.data.token);
+          Cookies.set('role', res.data.role);  
+          setError('');
+          setLoggedIn(true);
+          navigate("/");
+        }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+          setError('Invalid Credentials');
       });
   };
 
@@ -43,18 +56,16 @@ const Login = () => {
                 <CustomInput
                   type="email"
                   name="email"
+                  value={email}
                   placeholder="Email"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
+                  onChange={setEmail}
                 />
                 <CustomInput
                   type="password"
                   name="password"
+                  value={password}
                   placeholder="Password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
+                  onChange={setPassword}
                 />
                 <div>
                   <Link to="/forgot-password">Forgot Password?</Link>
@@ -71,6 +82,7 @@ const Login = () => {
                       SignUp
                     </Link>
                   </div>
+                  {error && <p className="text-danger text-center mt-3">{error}</p>}
                 </div>
               </form>
             </div>

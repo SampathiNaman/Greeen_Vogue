@@ -38,8 +38,8 @@ const Footer = () => {
               <h4 className="text-white mb-4">Contact Us</h4>
               <div>
                 <address className="text-white fs-6">
-                  Hno : 277 Near Vill chopal, <br /> Sonipat, Haryana <br />
-                  PinCode: 131103
+                  NIT Patna, <br /> Patna, Bihar <br />
+                  PinCode: 800005
                 </address>
                 <a
                   href="tel:+91 8264954234"
@@ -48,10 +48,10 @@ const Footer = () => {
                   +91 8264954234
                 </a>
                 <a
-                  href="mailto:navdeepdahiya753@gmail.com"
+                  href="mailto:amaryadav003@gmail.com"
                   className="mt-2 d-block mb-0 text-white"
                 >
-                  navdeepdahiya753@gmail.com
+                  amaryadav003@gmail.com
                 </a>
                 <div className="social_icons d-flex align-items-center gap-30 mt-4">
                   <a className="text-white" href="#">
@@ -98,10 +98,10 @@ const Footer = () => {
             <div className="col-2">
               <h4 className="text-white mb-4">Quick Links</h4>
               <div className="footer-link d-flex flex-column">
-                <Link className="text-white py-2 mb-1">Laptops</Link>
-                <Link className="text-white py-2 mb-1">Headphones</Link>
-                <Link className="text-white py-2 mb-1">Tablets</Link>
-                <Link className="text-white py-2 mb-1">Watch</Link>
+                <Link className="text-white py-2 mb-1" to=''>Men's clothing</Link>    {/*Add Links*/ }
+                <Link className="text-white py-2 mb-1" to=''>Women's clothing</Link>  {/*Add Links*/ }
+                <Link className="text-white py-2 mb-1" to=''>Kid's clothing</Link>    {/*Add Links*/ }
+                <Link className="text-white py-2 mb-1" to=''>Foot Wear</Link>         {/*Add Links*/ }
               </div>
             </div>
           </div>
